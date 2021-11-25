@@ -212,9 +212,9 @@ class VMInstance: NSObject, VZVirtualMachineDelegate {
         let graphics = VZMacGraphicsDeviceConfiguration()
         graphics.displays = [
             VZMacGraphicsDisplayConfiguration(
-                widthInPixels: 2560,
-                heightInPixels: 1600,
-                pixelsPerInch: 220
+                widthInPixels: 6016,
+                heightInPixels: 3384,
+                pixelsPerInch: 137
             )
         ]
         

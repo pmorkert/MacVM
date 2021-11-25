@@ -34,26 +34,43 @@ struct VMView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-        .toolbar {
-            ToolbarItem {
-                Button(action: {
-                    guard let fileURL = fileURL else {
-                        return
-                    }
-                    
-                    if document.isRunning {
-                        document.vmInstance?.stop()
-                    } else {
-                        document.createVMInstance(with: fileURL)
-                        document.vmInstance?.start()
-                    }
-                }) {
-                    Image(systemName: document.isRunning ? "stop.circle" : "play.circle")
-                        .font(.system(size: 24, weight: .regular, design: .rounded))
+        .contextMenu(
+            ContextMenu {
+                Button("Start", action: {
+                guard let fileURL = fileURL else {
+                    return
                 }
-                .buttonStyle(BorderlessButtonStyle())
-                .disabled(!document.content.installed)
-            }
-        }
+
+                if document.isRunning {
+                    document.vmInstance?.stop()
+                } else {
+                    document.createVMInstance(with: fileURL)
+                    document.vmInstance?.start()
+                }
+            })
+                    .keyboardShortcut("s")
+        })
+//        .toolbar {
+//            ToolbarItem {
+//                Button(action: {
+//                    guard let fileURL = fileURL else {
+//                        return
+//                    }
+//
+//                    if document.isRunning {
+//                        document.vmInstance?.stop()
+//                    } else {
+//                        document.createVMInstance(with: fileURL)
+//                        document.vmInstance?.start()
+//                    }
+//                }) {
+//                    Image(systemName: document.isRunning ? "stop.circle" : "play.circle")
+//                        .font(.system(size: 24, weight: .regular, design: .rounded))
+//                }
+//                .buttonStyle(BorderlessButtonStyle())
+//                .disabled(!document.content.installed)
+//                .keyboardShortcut("s")
+//            }
+//        }
     }
 }
